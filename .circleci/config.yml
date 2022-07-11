@@ -9,6 +9,8 @@ jobs:
       - run: echo "Installing dependencies..."
       - run: pip install -r requirements.txt -t lib #install packages to folder lib
   build:
+    docker:
+      - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: echo "Zipping deployment package..."
