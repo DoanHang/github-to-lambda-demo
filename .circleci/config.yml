@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  install:
+    docker:
+      - image: "circleci/python:3.6.4"
+    steps:
+      - checkout
+      - run: echo "Installing dependencies..."
+      - run: pip install -r requirements.txt -t lib #install packages to folder lib
+  build:
+    docker:
+      - image: "circleci/python:3.6.4"
+    steps:
+      - checkout
+      - run: echo "Zipping deployment package..."
+      - run: cd lib
+      - run: zip -r9 ../deployment_package.zip .
+      - run: cd ..
+      - run: zip -g deployment_package.zip lambda_function.py
+
+workflows:
+  build_and_test:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
