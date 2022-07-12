@@ -16,10 +16,11 @@ jobs:
     steps:
       - checkout
       - run: echo "Zipping deployment package..."
-      - run: cd lib
-      - run: zip -r9 ../deployment_package.zip .
-      - run: cd ..
-      - run: zip -g deployment_package.zip lambda_function.py
+      - run: echo "DONE!!!!..."
+      # - run: cd lib
+      # - run: zip -r9 ../deployment_package.zip .
+      # - run: cd ..
+      # - run: zip -g deployment_package.zip lambda_function.py
 
 
 workflows:
